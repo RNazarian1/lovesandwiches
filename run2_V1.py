@@ -49,6 +49,7 @@ def get_sales_data():
     data_str = input("Enter your data here: ")
     sales_data = data_str.split(",")
     validate_data(sales_data)
+    print(sales_data)
 
 
 def validate_data(values):
@@ -58,14 +59,21 @@ def validate_data(values):
     or if there aren't exactly 6 values.
     """
     try:
+        print(values)
         [int(value) for value in values]
+        print(values)
         if len(values) != 6:
             raise ValueError(
                 f"\nExactly 6 values required, \n\tyou provided {len(values)} \n\t\t \
                          or \n\t\t\tthere is no (,) between the values"
             )
+        
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
         get_sales_data()
     print("Input is valid")
+
 get_sales_data()
+
+l1=[1,2,3,4]
+print(l1)
