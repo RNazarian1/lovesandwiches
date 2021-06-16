@@ -61,10 +61,11 @@ def validate_data(values):
         [int(value) for value in values]
         if len(values) != 6:
             raise ValueError(
-                f"\nExactly 6 values required, \n\tyou provided {len(values)} \n\t\t      or \n\t\t\tthere is no (,) between the values"
+                f"\nExactly 6 values required, \n\tyou provided {len(values)} \n\t\t \
+                         or \n\t\t\tthere is no (,) between the values"
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
-
-
+        get_sales_data()
+    print("Input is valid")
 get_sales_data()
