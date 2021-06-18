@@ -47,7 +47,7 @@ def validate_data(values):
         """
         [int(value) for value in values]
         print(values)
-        [print(type(value)) for value in values]
+        [print(type(value) ,value) for value in values]
         if len(values) != 6:
             raise ValueError(
                 f"Exactly 6 values required, you provided {len(values)}"
@@ -60,3 +60,4 @@ def validate_data(values):
 
 
 data = get_sales_data()
+print(f"{data=}\nthe type of it is {type(data)}")
