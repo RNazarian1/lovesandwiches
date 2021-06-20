@@ -7,12 +7,12 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('livehealthy_creds.json')
+CREDS = Credentials.from_service_account_file('test1.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('livehealthy')
+SHEET = GSPREAD_CLIENT.open('test1')
 
-sales = SHEET.worksheet('measurements')
+sales = SHEET.worksheet('sheet1')
 
 data = sales.get_all_values()
 
