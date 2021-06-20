@@ -7,10 +7,10 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file('livehealthy_creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('love_sandwiches')
+SHEET = GSPREAD_CLIENT.open('livehealthy')
 
 # sales = SHEET.worksheet('sales')
 
@@ -85,7 +85,7 @@ def update_sales_worksheet(data):
     Update Sales Worksheet()add new row with the list provided
     """
     print("Updating sales Worksheet\n")
-    sales_worksheet = SHEET.worksheet("sales")
+    sales_worksheet = SHEET.worksheet("measurements")
     sales_worksheet.append_row(data)
     print("Sales worksheet update successfully")
 
