@@ -12,12 +12,15 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('test1')
 
-# sales = SHEET.worksheet('sheet1')
+sheetname = SHEET.sheet_names()
 
-# data = sales.get_all_values()
+sales = SHEET.worksheet('sheet1')
 
-# print(data)
-# print("\n\tHello")
+data = sales.get_all_values()
+
+print(data)
+print(sheetname)
+print("\n\tHello")
 
 
 

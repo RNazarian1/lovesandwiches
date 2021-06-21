@@ -12,7 +12,12 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('livehealthy')
 
-sales = SHEET.worksheet('measurements')
+
+sales = SHEET.worksheet('p1')
+listsheet=SHEET.getsheet()
+print(listsheet)
+# worksheet = SHEET.add_worksheet(title="B worksheet", rows="100", cols="20")
+
 
 data = sales.get_all_values()
 
