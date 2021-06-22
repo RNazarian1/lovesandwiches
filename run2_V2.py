@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-
+from pprint import pprint
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -18,9 +18,6 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
 # print(data)
 # print("\n\tHello")
-
-
-
 # def get_sales_data():
 #     """
 #     Get sales figures input from the user.
@@ -31,9 +28,8 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches')
 
 #     data_str = input("Enter your data here: ")
 #     print(f"The data provided is {data_str}")
-
-
 # get_sales_data()
+
 
 def get_sales_data():
 
@@ -61,7 +57,9 @@ def get_sales_data():
             break
     return sales_data
 
+
 def validate_data(values):
+
     """
     Inside the try, converts all string values into integers.
     Raises ValueError if strings cannot be converted into int,
@@ -79,6 +77,7 @@ def validate_data(values):
         return False
     return True
 
+
 def update_sales_worksheet(data):
 
     """
@@ -90,17 +89,44 @@ def update_sales_worksheet(data):
     print("Sales worksheet update successfully")
 
 
+def calculate_surplus_data(sales_row):
+
+    """
+    calculate surplus data
+
+    """
+    print("calculating surplus data\n")
+    stock = SHEET.worksheet("stock").get_all_values()
+    pprint(stock)
+    print(stock[len(stock)-1])
+    print(stock[-1])
+    stock_row = stock[-1]
+    print(stock_row)
+    print(f"stock row: {stock_row}")
+    print(f"sales row: {sales_row}")
+
+    surplus_data = []
+    for st, sa in zip(stock_row, sales_row):
+        surplus = int(st) - sa
+        surplus_data.append(surplus)
+    return(surplus_data)
+
+
 def main():
+
     """
     run all functions
     """
     data = get_sales_data()
-    sales_data=[int(num) for num in data]
+    sales_data = [int(num) for num in data]
     print(type(data))
-
-
     print(sales_data)
-
     update_sales_worksheet(sales_data)
+    calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
+
+
 print("\nWelcome\n")
+
 main()

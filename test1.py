@@ -11,13 +11,20 @@ CREDS = Credentials.from_service_account_file('test1.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('test1')
+sheetname = SHEET.worksheets()
 
-sheetname = SHEET.sheet_names()
+
+print("Create A Patient Record. Enter Patient ID.")
+print("Patient ID starts bY 'p' followed by a unique number")
+print("Example: p12345\n")
+
+pid = input("Enter patient ID here: ")
 
 sales = SHEET.worksheet('sheet1')
 
 data = sales.get_all_values()
-
+SHEET.add_worksheet(title=pid, rows="100", cols="20")
+sheetname = SHEET.worksheets()
 print(data)
 print(sheetname)
 print("\n\tHello")
